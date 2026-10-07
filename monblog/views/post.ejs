@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('layouts/header'); -%>
+<body>
+    <%- include('layouts/navbar'); -%>
+    <header class="masthead bg-dark text-white text-center py-5">
+        <div class="container">
+            <h1><%= blogpost.title %></h1>
+            <span class="meta">Posted by <%= blogpost.userid ? blogpost.userid.username : 'Unknown' %> on <%= blogpost.datePosted.toDateString() %></span>
+        </div>
+        <% if(blogpost.image) { %>
+            <img src="<%= blogpost.image %>" class="img-fluid mt-3" style="max-height: 400px;">
+        <% } %>
+    </header>
+    <article class="mt-4">
+        <div class="container">
+            <%- blogpost.body %>
+        </div>
+    </article>
+    <%- include('layouts/footer'); -%>
+    <%- include('layouts/scripts'); -%>
+</body>
+</html>

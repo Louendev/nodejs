@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('layouts/header'); -%>
+<body>
+    <%- include('layouts/navbar'); -%>
+    <header class="masthead bg-dark text-white text-center py-5">
+        <div class="container"><h1>Clean Blog</h1><span class="subheading">A Blog Theme</span></div>
+    </header>
+    <div class="container mt-4">
+        <% if(blogposts && blogposts.length > 0) { %>
+            <% for (var i = 0; i < blogposts.length; i++){ %>
+                <div class="post-preview">
+                    <a href="/post/<%= blogposts[i]._id %>">
+                        <h2 class="post-title"><%= blogposts[i].title %></h2>
+                    </a>
+                    <p class="post-meta">Posted by <%= blogposts[i].userid ? blogposts[i].userid.username : 'Unknown' %> on <%= blogposts[i].datePosted.toDateString() %></p>
+                </div>
+                <hr>
+            <% } %>
+        <% } else { %>
+            <p>No posts found.</p>
+        <% } %>
+    </div>
+    <%- include('layouts/footer'); -%>
+    <%- include('layouts/scripts'); -%>
+</body>
+</html>

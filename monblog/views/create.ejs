@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('layouts/header'); -%>
+<body>
+    <%- include('layouts/navbar'); -%>
+    <header class="masthead bg-dark text-white text-center py-5"><div class="container"><h1>Create New Post</h1></div></header>
+    <div class="container mt-4">
+        <form action="/posts/store" method="POST" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label>Title</label>
+                <input type="text" class="form-control" name="title" required>
+            </div>
+            <div class="mb-3">
+                <label>Description</label>
+                <textarea class="form-control" id="body" name="body" required></textarea>
+                <script>
+                    $(document).ready(function() {
+                        $('#body').summernote({ height: 200 });
+                    });
+                </script>
+            </div>
+            <div class="mb-3">
+                <label>Image</label>
+                <input type="file" class="form-control" name="image" required>
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">Send</button>
+        </form>
+    </div>
+    <%- include('layouts/footer'); -%>
+    <%- include('layouts/scripts'); -%>
+</body>
+</html>

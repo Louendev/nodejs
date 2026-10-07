@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('layouts/header'); -%>
+<body>
+    <%- include('layouts/navbar'); -%>
+    <header class="masthead bg-dark text-white text-center py-5"><div class="container"><h1>Register</h1></div></header>
+    <div class="container mt-4">
+        <% if(errors != null && errors.length > 0) { %>
+            <ul class="list-group mb-3">
+                <% for(var i = 0; i < errors.length; i++){ %>
+                    <li class="list-group-item list-group-item-danger"><%= errors[i] %></li>
+                <% } %>
+            </ul>
+        <% } %>
+        <form action="/users/register" method="POST">
+            <div class="mb-3">
+                <label>Username</label>
+                <input type="text" class="form-control" name="username" value="<%= username %>" required>
+            </div>
+            <div class="mb-3">
+                <label>Password</label>
+                <input type="password" class="form-control" name="password" value="<%= password %>" required>
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">Register</button>
+        </form>
+    </div>
+    <%- include('layouts/footer'); -%>
+    <%- include('layouts/scripts'); -%>
+</body>
+</html>
