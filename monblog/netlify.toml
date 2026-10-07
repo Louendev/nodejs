@@ -1,5 +1,5 @@
 [build]
-  command = "npm install"
+  command = "npm install --legacy-peer-deps"
   functions = "netlify/functions"
   publish = "public"
 
@@ -7,3 +7,4 @@
   from = "/*"
   to = "/.netlify/functions/api/:splat"
   status = 200
+
