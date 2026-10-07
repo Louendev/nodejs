@@ -1,28 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <%- include('layouts/header'); -%>
-<body>
+<body class="bg-light">
     <%- include('layouts/navbar'); -%>
-    <header class="masthead bg-dark text-white text-center py-5"><div class="container"><h1>Register</h1></div></header>
-    <div class="container mt-4">
-        <% if(errors != null && errors.length > 0) { %>
-            <ul class="list-group mb-3">
-                <% for(var i = 0; i < errors.length; i++){ %>
-                    <li class="list-group-item list-group-item-danger"><%= errors[i] %></li>
-                <% } %>
-            </ul>
-        <% } %>
-        <form action="/users/register" method="POST">
-            <div class="mb-3">
-                <label>Username</label>
-                <input type="text" class="form-control" name="username" value="<%= username %>" required>
+    <div class="container mt-5 pt-5 mb-5">
+        <div class="row justify-content-center">
+            <div class="col-md-5">
+                <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
+                    <div class="card-header bg-primary text-white text-center py-4">
+                        <h3 class="mb-0 fw-bold">Creer un compte</h3>
+                    </div>
+                    <div class="card-body p-5">
+                        <% if(errors != null && errors.length > 0) { %>
+                            <div class="alert alert-danger rounded-3">
+                                <ul class="mb-0">
+                                    <% for(var i = 0; i < errors.length; i++){ %>
+                                        <li><%= errors[i] %></li>
+                                    <% } %>
+                                </ul>
+                            </div>
+                        <% } %>
+                        <form action="/users/register" method="POST">
+                            <div class="mb-4">
+                                <label class="form-label text-muted fw-bold">Nom d'utilisateur</label>
+                                <input type="text" class="form-control form-control-lg bg-light" name="username" value="<%= username %>" required>
+                            </div>
+                            <div class="mb-5">
+                                <label class="form-label text-muted fw-bold">Mot de passe</label>
+                                <input type="password" class="form-control form-control-lg bg-light" name="password" value="<%= password %>" required>
+                            </div>
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary btn-lg rounded-pill fw-bold">Rejoindre le blog</button>
+                            </div>
+                        </form>
+                        <div class="text-center mt-4">
+                            <a href="/auth/login" class="text-decoration-none text-muted">Deja un compte ? <span class="text-primary fw-bold">Se connecter</span></a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="mb-3">
-                <label>Password</label>
-                <input type="password" class="form-control" name="password" value="<%= password %>" required>
-            </div>
-            <button type="submit" class="btn btn-primary mt-3">Register</button>
-        </form>
+        </div>
     </div>
     <%- include('layouts/footer'); -%>
     <%- include('layouts/scripts'); -%>

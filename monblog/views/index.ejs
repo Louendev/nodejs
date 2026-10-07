@@ -1,25 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <%- include('layouts/header'); -%>
-<body>
+<body class="bg-light">
     <%- include('layouts/navbar'); -%>
-    <header class="masthead bg-dark text-white text-center py-5">
-        <div class="container"><h1>Clean Blog</h1><span class="subheading">A Blog Theme</span></div>
+    <header class="masthead text-white text-center py-5 shadow" style="background: linear-gradient(to right, #2b5876 0%, #4e4376 100%);">
+        <div class="container py-5">
+            <h1 class="display-4 fw-bold mb-3">Mon Super Blog</h1>
+            <p class="lead fs-4">Partagez vos idees, tutoriels et pensees avec le monde.</p>
+        </div>
     </header>
-    <div class="container mt-4">
-        <% if(blogposts && blogposts.length > 0) { %>
-            <% for (var i = 0; i < blogposts.length; i++){ %>
-                <div class="post-preview">
-                    <a href="/post/<%= blogposts[i]._id %>">
-                        <h2 class="post-title"><%= blogposts[i].title %></h2>
-                    </a>
-                    <p class="post-meta">Posted by <%= blogposts[i].userid ? blogposts[i].userid.username : 'Unknown' %> on <%= blogposts[i].datePosted.toDateString() %></p>
-                </div>
-                <hr>
-            <% } %>
-        <% } else { %>
-            <p>No posts found.</p>
-        <% } %>
+    <div class="container mt-5 mb-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <% if(blogposts && blogposts.length > 0) { %>
+                    <% for (var i = 0; i < blogposts.length; i++){ %>
+                        <div class="card mb-5 shadow-sm border-0 rounded-4 overflow-hidden hover-effect">
+                            <% if(blogposts[i].image) { %>
+                                <a href="/post/<%= blogposts[i]._id %>">
+                                    <img src="<%= blogposts[i].image %>" class="card-img-top" alt="Cover" style="height: 350px; object-fit: cover; width: 100%;">
+                                </a>
+                            <% } %>
+                            <div class="card-body p-4">
+                                <h2 class="card-title fw-bold mb-3">
+                                    <a href="/post/<%= blogposts[i]._id %>" class="text-decoration-none text-dark"><%= blogposts[i].title %></a>
+                                </h2>
+                                <p class="card-text text-muted mb-4">
+                                    Publie par <strong><%= blogposts[i].userid ? blogposts[i].userid.username : 'Inconnu' %></strong> 
+                                    le <%= new Date(blogposts[i].datePosted).toLocaleDateString('fr-FR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) %>
+                                </p>
+                                <a href="/post/<%= blogposts[i]._id %>" class="btn btn-primary rounded-pill px-4">Lire l'article &rarr;</a>
+                            </div>
+                        </div>
+                    <% } %>
+                <% } else { %>
+                    <div class="alert alert-info text-center p-5 rounded-4 shadow-sm">
+                        <h4>Oups, c'est bien vide par ici !</h4>
+                        <p class="mb-0">Soyez le tout premier a publier un article sur ce blog.</p>
+                    </div>
+                <% } %>
+            </div>
+        </div>
     </div>
     <%- include('layouts/footer'); -%>
     <%- include('layouts/scripts'); -%>

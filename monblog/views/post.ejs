@@ -1,20 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <%- include('layouts/header'); -%>
-<body>
+<body class="bg-light">
     <%- include('layouts/navbar'); -%>
-    <header class="masthead bg-dark text-white text-center py-5">
+    <header class="masthead text-white text-center shadow-lg" style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('<%= blogpost.image || '' %>'); background-size: cover; background-position: center; padding: 180px 0;">
         <div class="container">
-            <h1><%= blogpost.title %></h1>
-            <span class="meta">Posted by <%= blogpost.userid ? blogpost.userid.username : 'Unknown' %> on <%= blogpost.datePosted.toDateString() %></span>
+            <h1 class="display-3 fw-bold mb-4"><%= blogpost.title %></h1>
+            <span class="meta fs-5 badge bg-primary p-3 rounded-pill">
+                Redige par <%= blogpost.userid ? blogpost.userid.username : 'Inconnu' %> le <%= new Date(blogpost.datePosted).toLocaleDateString('fr-FR') %>
+            </span>
         </div>
-        <% if(blogpost.image) { %>
-            <img src="<%= blogpost.image %>" class="img-fluid mt-3" style="max-height: 400px;">
-        <% } %>
     </header>
-    <article class="mt-4">
+    <article class="mt-5 mb-5 pb-5">
         <div class="container">
-            <%- blogpost.body %>
+            <div class="row justify-content-center">
+                <div class="col-lg-8 fs-5 bg-white p-5 rounded-4 shadow-sm" style="line-height: 1.8;">
+                    <%- blogpost.body %>
+                </div>
+            </div>
         </div>
     </article>
     <%- include('layouts/footer'); -%>

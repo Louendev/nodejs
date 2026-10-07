@@ -1,15 +1,18 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light" id="mainNav">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm py-3">
     <div class="container px-4 px-lg-5">
-        <a class="navbar-brand" href="/">Blog</a>
+        <a class="navbar-brand fw-bold fs-4" href="/">MonBlog<span class="text-primary">.io</span></a>
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ms-auto py-4 py-lg-0">
-                <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+                <li class="nav-item"><a class="nav-link px-lg-3" href="/">Accueil</a></li>
                 <% if(loggedIn) { %>
-                    <li class="nav-item"><a class="nav-link" href="/posts/new">New Post</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/auth/logout">Logout</a></li>
+                    <li class="nav-item"><a class="nav-link px-lg-3 text-warning fw-bold" href="/posts/new">Nouvel Article</a></li>
+                    <li class="nav-item"><a class="nav-link px-lg-3 text-danger" href="/auth/logout">Deconnexion</a></li>
                 <% } else { %>
-                    <li class="nav-item"><a class="nav-link" href="/auth/login">Login</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/auth/register">Register</a></li>
+                    <li class="nav-item"><a class="nav-link px-lg-3" href="/auth/login">Connexion</a></li>
+                    <li class="nav-item ms-lg-2"><a class="btn btn-primary rounded-pill px-4" href="/auth/register">S'inscrire</a></li>
                 <% } %>
             </ul>
         </div>
