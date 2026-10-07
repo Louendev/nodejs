@@ -7,10 +7,9 @@ const flash = require('connect-flash');
 
 const app = express();
 
-mongoose.connect("mongodb://127.0.0.1:27017/newBlog", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-}).catch(console.error);
+require('dotenv').config();
+const mongoUrl = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/newBlog';
+mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => console.log('Connecté à la base de données !')).catch(err => console.error('ERREUR DE BASE DE DONNÉES : Impossible de se connecter.', err.message));
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
@@ -61,3 +60,4 @@ if (require.main === module) {
     });
 }
 module.exports = app;
+
