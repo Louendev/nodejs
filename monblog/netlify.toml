@@ -1,3 +1,6 @@
+[functions]
+  included_files = ["views/**"]
+
 [build]
   command = "npm install --legacy-peer-deps"
   functions = "netlify/functions"
@@ -7,4 +10,5 @@
   from = "/*"
   to = "/.netlify/functions/api/:splat"
   status = 200
+
 

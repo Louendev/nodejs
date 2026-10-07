@@ -9,9 +9,10 @@ const app = express();
 
 require('dotenv').config();
 const mongoUrl = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/newBlog';
-mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => console.log('Connecté à la base de données !')).catch(err => console.error('ERREUR DE BASE DE DONNÉES : Impossible de se connecter.', err.message));
+mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true, serverSelectionTimeoutMS: 2000 }).then(() => console.log('Connecté à la base de données !')).catch(err => console.error('ERREUR DE BASE DE DONNÉES : Impossible de se connecter.', err.message));
 
 app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
 app.use(express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -60,4 +61,5 @@ if (require.main === module) {
     });
 }
 module.exports = app;
+
 
